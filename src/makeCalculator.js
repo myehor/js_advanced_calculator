@@ -9,19 +9,23 @@ function makeCalculator() {
     result: 0,
 
     add(number) {
-      this.result += number;
+      return this.result + number;
     },
 
     subtract(number) {
-      this.result -= number;
+      return this.result - number;
     },
 
     multiply(number) {
-      this.result *= number;
+      return this.result * number;
     },
 
     divide(number) {
-      this.result /= number;
+      if (number === 0) {
+        return this.result;
+      }
+
+      return this.result / number;
     },
 
     reset() {
@@ -35,7 +39,7 @@ function makeCalculator() {
         throw new TypeError('Callback must be a function');
       }
 
-      callback.call(this, number);
+      this.result = callback.call(this, number);
 
       return this;
     },
