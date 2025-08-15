@@ -31,6 +31,10 @@ function makeCalculator() {
     },
 
     operate(callback, number) {
+      if (typeof callback !== 'function') {
+        throw new TypeError('Callback must be a function');
+      }
+
       callback.call(this, number);
 
       return this;
